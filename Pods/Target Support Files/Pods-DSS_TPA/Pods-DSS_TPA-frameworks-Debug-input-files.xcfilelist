@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-DSS_TPA/Pods-DSS_TPA-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework
+${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BobotParameters" representedClassName=".BobotParameters" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="namaParameter" optional="YES" attributeType="String"/>
+        <attribute name="nilaiBobotParameter" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="createdBobot" inverseEntity="Users"/>
+        <relationship name="kasiNamaPDAlternatif" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataAlternatifs" inverseName="namaParameternya" inverseEntity="DataAlternatifs"/>
+        <relationship name="kasiNamaPKlasifikasi" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NilaiKlasifikasi" inverseName="namaParameternya" inverseEntity="NilaiKlasifikasi"/>
+    </entity>
+    <entity name="DataAlternatifs" representedClassName=".DataAlternatifs" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="createdDAlternatif" inverseEntity="Users"/>
+        <relationship name="namaKecamatannya" maxCount="1" deletionRule="Nullify" destinationEntity="Kecamatans" inverseName="kasiKecDAlternatif" inverseEntity="Kecamatans"/>
+        <relationship name="namaParameternya" maxCount="1" deletionRule="Nullify" destinationEntity="BobotParameters" inverseName="kasiNamaPDAlternatif" inverseEntity="BobotParameters"/>
+        <relationship name="rangeNilainya" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NilaiKlasifikasi" inverseName="kasiRangeNilai" inverseEntity="NilaiKlasifikasi"/>
+    </entity>
+    <entity name="Kabupaten" representedClassName="Kabupaten" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="namaKabupaten" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="createdKabupaten" inverseEntity="Users"/>
+        <relationship name="punyaKecamatan" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Kecamatans" inverseName="dariKabupaten" inverseEntity="Kecamatans"/>
+    </entity>
+    <entity name="Kecamatans" representedClassName=".Kecamatans" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="namaDaerah" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="createdKecamatan" inverseEntity="Users"/>
+        <relationship name="dariKabupaten" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Kabupaten" inverseName="punyaKecamatan" inverseEntity="Kabupaten"/>
+        <relationship name="kasiKecDAlternatif" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataAlternatifs" inverseName="namaKecamatannya" inverseEntity="DataAlternatifs"/>
+    </entity>
+    <entity name="NilaiKlasifikasi" representedClassName=".NilaiKlasifikasi" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nilai_klasifikasi" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rangeNilaiParameter" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="createdBy" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="createdNilaiKlasifikasi" inverseEntity="Users"/>
+        <relationship name="kasiRangeNilai" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataAlternatifs" inverseName="rangeNilainya" inverseEntity="DataAlternatifs"/>
+        <relationship name="namaParameternya" maxCount="1" deletionRule="Nullify" destinationEntity="BobotParameters" inverseName="kasiNamaPKlasifikasi" inverseEntity="BobotParameters"/>
+    </entity>
+    <entity name="Users" representedClassName=".Users" syncable="YES" codeGenerationType="class">
+        <attribute name="alamat" optional="YES" attributeType="String"/>
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="password" attributeType="String"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
+        <attribute name="tanggal_lahir" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updated_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="username" attributeType="String"/>
+        <relationship name="createdBobot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BobotParameters" inverseName="createdBy" inverseEntity="BobotParameters"/>
+        <relationship name="createdDAlternatif" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataAlternatifs" inverseName="createdBy" inverseEntity="DataAlternatifs"/>
+        <relationship name="createdKabupaten" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Kabupaten" inverseName="createdBy" inverseEntity="Kabupaten"/>
+        <relationship name="createdKecamatan" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Kecamatans" inverseName="createdBy" inverseEntity="Kecamatans"/>
+        <relationship name="createdNilaiKlasifikasi" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NilaiKlasifikasi" inverseName="createdBy" inverseEntity="NilaiKlasifikasi"/>
+    </entity>
+    <elements>
+        <element name="BobotParameters" positionX="-178.9375" positionY="-132.75390625" width="128" height="148"/>
+        <element name="DataAlternatifs" positionX="-484.30078125" positionY="196.26171875" width="128" height="133"/>
+        <element name="Kabupaten" positionX="35.5625" positionY="-108.44140625" width="128" height="118"/>
+        <element name="Kecamatans" positionX="-30.35546875" positionY="90.2578125" width="128" height="133"/>
+        <element name="NilaiKlasifikasi" positionX="-163.4453125" positionY="261.953125" width="128" height="148"/>
+        <element name="Users" positionX="-524.18359375" positionY="-150.78125" width="128" height="238"/>
+    </elements>
+</model>
